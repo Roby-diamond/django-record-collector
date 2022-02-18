@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Genre List</h1>
+
+{% for genre in object_list %}
+<div class="card">
+    <a href="{% url 'genres_detail' genre.id %}">
+        <div class="card-content">
+            <span class="card-title">{{ genre.name }}</span>
+        </div>
+    </a>
+</div>
+{% endfor %}
+
+
+{% endblock %}

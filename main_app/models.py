@@ -8,16 +8,26 @@ TRANSACTIONS = (
 
 # Create your models here.
 
+class Genre(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'genre_id': self.id})
+
 class Record(models.Model):
     title = models.CharField(max_length=100)
     artist = models.CharField(max_length=100)
     release_date = models.DateField()
+    genres = models.ManyToManyField(Genre)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("detail", kwargs={"record_id": self.id})
+        return reverse('detail', kwargs={'record_id': self.id})
 
 class Market(models.Model):
     date = models.DateField('date')
